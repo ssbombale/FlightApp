@@ -1,0 +1,190 @@
+<form>
+    <div class="row">
+        <div class="col">
+            <label style="margin-left: 10%; font-size: 19px;">FlightName</label>
+            <input type="text" style="width: 50%;margin-top: -5%;margin-left: 40%;" class="form-control"
+                placeholder="Flight Name" name="FlightName" [(ngModel)]="createFlight.flightName" required
+                #flightName="ngModel" [class.is-invalid]="flightName.invalid && flightName.touched">
+            <small class="text-danger" [class.d-none]="flightName.valid || flightName.untouched"
+                style="margin-left: 41%;">FlightName is required</small>
+
+        </div>
+        <div class="col">
+            <label style="margin-left: 7%; font-size: 19px;">
+                FlightCode</label>
+            <input type="text" style="width: 50%;margin-top: -5%;margin-left: 28%;" class="form-control"
+                placeholder="Flight Code" name="FlightCode" [(ngModel)]="createFlight.flightCode" required
+                #flightCode="ngModel" [class.is-invalid]="flightCode.invalid && flightCode.touched">
+            <small class="text-danger" [class.d-none]="flightCode.valid || flightCode.untouched"
+                style="margin-left: 41%;">FlightCode is required</small>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col">
+            <label style="margin-left: 10%; font-size: 19px;">AirLineName</label>
+
+            <select class="form-control" style="width: 50%;margin-top: -5%;margin-left: 40%;"
+                [(ngModel)]="createFlight.airlineName" name="AirLineName">
+                <option *ngFor="let air of airline;">{{air.airlineName}}</option>
+            </select>
+
+            <!-- <input type="text" style="width: 50%;margin-top: -5%;margin-left: 40%;" class="form-control"
+                placeholder="First name"> -->
+        </div>
+        <div class="col">
+            <label style="margin-left: 7%; font-size: 19px;">
+                TravelDays</label>
+
+            <select class="form-control" style="width: 50%;margin-top: -5%;margin-left: 28%;"
+                [(ngModel)]="createFlight.flighttravelDays" name="TravelDays">
+                <option>AllDays</option>
+                <option>WeekDays</option>
+                <option>WeekEnds</option>
+            </select>
+
+            <!-- <input type="text" style="width: 50%;margin-top: -5%;margin-left: 28%;" class="form-control"
+                placeholder="Last name"> -->
+        </div>
+    </div><br>
+    <div class="row">
+        <div class="col">
+            <label style="margin-left: 10%; font-size: 19px;">Source</label>
+            <input type="text" style="width: 50%;margin-top: -5%;margin-left: 40%;"
+                [(ngModel)]="createFlight.startPoint" class="form-control" placeholder="start Point" name="StartPoint"
+                required #startPoint="ngModel" [class.is-invalid]="startPoint.invalid && startPoint.touched">
+            <small class="text-danger" [class.d-none]="startPoint.valid || startPoint.untouched"
+                style="margin-left: 41%;">FlightName is required</small>
+        </div>
+        <div class="col">
+            <label style="margin-left: 7%; font-size: 19px;">
+                Destination</label>
+            <input type="text" style="width: 50%;margin-top: -5%;margin-left: 28%;" class="form-control"
+                placeholder="End Point" name="EndPoint" [(ngModel)]="createFlight.endPoint" required #endPoint="ngModel"
+                [class.is-invalid]="endPoint.invalid && endPoint.touched">
+            <small class="text-danger" [class.d-none]="endPoint.valid || endPoint.untouched"
+                style="margin-left: 41%;">FlightName is required</small>
+        </div>
+    </div><br>
+    <div class="row">
+        <div class="col">
+            <label style="margin-left: 10%; font-size: 19px;">StartTime</label>
+            <input type="time" style="width: 50%;margin-top: -5%;margin-left: 40%;" class="form-control"
+                placeholder="Start Time" name="StartTime" [(ngModel)]="createFlight.flightStartTime" required
+                #flightStartTime="ngModel" [class.is-invalid]="flightStartTime.invalid && flightStartTime.touched">
+            <small class="text-danger" [class.d-none]="flightStartTime.valid || flightStartTime.untouched"
+                style="margin-left: 41%;">StartTime is required</small>
+        </div>
+        <div class="col">
+            <label style="margin-left: 7%; font-size: 19px;">
+                EndTime</label>
+            <input type="time" style="width: 50%;margin-top: -5%;margin-left: 28%;" class="form-control"
+                placeholder="End Time" name="EndTime" [(ngModel)]="createFlight.flightEndTime" required
+                #flightEndTime="ngModel" [class.is-invalid]="flightEndTime.invalid && flightEndTime.touched">
+            <small class="text-danger" [class.d-none]="flightEndTime.valid || flightEndTime.untouched"
+                style="margin-left: 41%;">EndTime is required</small>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col">
+            <label style="margin-left: 10%; font-size: 19px;">TravelHours</label>
+            <input type="text" style="width: 50%;margin-top: -5%;margin-left: 40%;" class="form-control"
+                placeholder="Travel Hours" name="totalhours" [(ngModel)]="createFlight.travelHours" required
+                #travelHours="ngModel" [class.is-invalid]="travelHours.invalid && travelHours.touched">
+            <small class="text-danger" [class.d-none]="travelHours.valid || travelHours.untouched"
+                style="margin-left: 41%;">TravelHours is required</small>
+        </div>
+        <div class="col">
+
+
+
+
+            <label style="margin-left: 7%; font-size: 19px;">
+                MealType</label>
+            <select class="form-control" style="margin-left: 28%;width: 50%;margin-top: -30px;"
+                [(ngModel)]="createFlight.mealType" name="mealType">
+                <option>Veg</option>
+                <option>Non-Veg</option>
+                <option>Both</option>
+            </select>
+
+
+
+        </div>
+    </div>
+
+    <br>
+
+
+    <div class="row">
+        <div class="col">
+            <label style="margin-left: 10%; font-size: 19px;">Total Bussiness Seats</label>
+            <input type="text" style="width: 50%;margin-top: -5%;margin-left: 40%;" class="form-control"
+                placeholder="Total Seats" name="totalseats" [(ngModel)]="createFlight.totalNumberOfSeats" required
+                #totalNumberOfSeats="ngModel"
+                [class.is-invalid]="totalNumberOfSeats.invalid && totalNumberOfSeats.touched">
+            <small class="text-danger" [class.d-none]="totalNumberOfSeats.valid || totalNumberOfSeats.untouched"
+                style="margin-left: 41%;">Total Bussiness Seats is required</small>
+        </div>
+        <div class="col">
+            <div>
+
+
+                <label style="margin-left: 7%; font-size: 19px;">
+                    Bussiness Price</label>
+                <input type="text" style="width: 50%;margin-top: -5%;margin-left: 28%;" class="form-control"
+                    placeholder="Price" name="price" [(ngModel)]="createFlight.priceDetails" required
+                    #priceDetails="ngModel" [class.is-invalid]="priceDetails.invalid && priceDetails.touched">
+                <small class="text-danger" [class.d-none]="priceDetails.valid || priceDetails.untouched"
+                    style="margin-left: 41%;">Price is required</small>
+
+
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+    <br>
+
+
+    <div class="row">
+        <div class="col">
+            <label style="margin-left: 10%; font-size: 19px;">Total Economy Seats</label>
+            <input type="text" style="width: 50%;margin-top: -5%;margin-left: 40%;" class="form-control"
+                placeholder="Total Seats" name="totalseats1" [(ngModel)]="createFlight.totalNumberOfEconamySeats" required
+                #totalNumberOfEconamySeats="ngModel"
+                [class.is-invalid]="totalNumberOfEconamySeats.invalid && totalNumberOfEconamySeats.touched">
+            <small class="text-danger" [class.d-none]="totalNumberOfEconamySeats.valid || totalNumberOfEconamySeats.untouched"
+                style="margin-left: 41%;">Total Econamy Seats is required</small>
+        </div>
+        <div class="col">
+            <label style="margin-left: 7%; font-size: 19px;">
+                Economy Price</label>
+            <input type="text" style="width: 50%;margin-top: -5%;margin-left: 28%;" class="form-control"
+                placeholder="Price" name="price1" [(ngModel)]="createFlight.priceEconamySeats" required
+                #priceEconamySeats="ngModel" [class.is-invalid]="priceEconamySeats.invalid && priceEconamySeats.touched">
+            <small class="text-danger" [class.d-none]="priceEconamySeats.valid || priceEconamySeats.untouched"
+                style="margin-left: 41%;">Economy Price is required</small>
+        </div>
+    </div>
+
+<br>
+    <div class="col">
+        <div>
+            <button class="btn btn-primary" type="submit" style="margin-left: 41%;width: 10%;margin-top: 0px;"
+                (click)="saveFlight()">Save</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <div> <button class="btn btn-primary" type="submit" (click)="cancelsave()"
+                style="margin-top: -66px;background-color: red;width: 10%;margin-left: 56%;">Cancel
+            </button></div>
+    </div>
+
+
+
+
+
+</form>

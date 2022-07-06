@@ -1,0 +1,168 @@
+<div class="row">
+    <div class="col">
+        <label style="margin-left: 10%; font-size: 19px;">FlightName</label>
+        <input type="text" style="width: 50%;margin-top: -5%;margin-left: 40%;" class="form-control"
+            placeholder="Flight Name" name = "FlightName"  [(ngModel)]="createFlight.flightName">
+    </div>
+    <div class="col">
+        <label style="margin-left: 7%; font-size: 19px;">
+            FlightCode</label>
+        <input type="text" style="width: 50%;margin-top: -5%;margin-left: 28%;" class="form-control"
+            placeholder="Flight Code" name = "FlightCode"  [(ngModel)]="createFlight.flightCode">
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col">
+        <label style="margin-left: 10%; font-size: 19px;">AirLineName</label>
+
+        <select class="form-control" style="width: 50%;margin-top: -5%;margin-left: 40%;" 
+        [(ngModel)]="createFlight.airlineName" name = "AirLineName">
+        <option>{{createFlight.airlineName}}</option>
+
+            <option *ngFor="let air of airline">{{air.airlineName}}</option>
+        </select>
+
+        <!-- <input type="text" style="width: 50%;margin-top: -5%;margin-left: 40%;" class="form-control"
+            placeholder="First name"> -->
+    </div>
+    <div class="col">
+        <label style="margin-left: 7%; font-size: 19px;">
+            TravelDays</label>
+
+        <select class="form-control" style="width: 50%;margin-top: -5%;margin-left: 28%;" 
+         [(ngModel)]="createFlight.flighttravelDays" name = "TravelDays">
+         <option>{{createFlight.flighttravelDays}}</option>
+            <option>All Days</option>
+            <option>WeekDays</option>
+            <option>WeekEnds</option>
+        </select>
+
+        <!-- <input type="text" style="width: 50%;margin-top: -5%;margin-left: 28%;" class="form-control"
+            placeholder="Last name"> -->
+    </div>
+</div><br>
+<div class="row">
+    <div class="col">
+        <label style="margin-left: 10%; font-size: 19px;">StartPoint</label>
+        <input type="text" style="width: 50%;margin-top: -5%;margin-left: 40%;" [(ngModel)]="createFlight.startPoint"  class="form-control"
+            placeholder="start Point" name = "StartPoint">
+    </div>
+    <div class="col">
+        <label style="margin-left: 7%; font-size: 19px;">
+            EndPoint</label>
+        <input type="text" style="width: 50%;margin-top: -5%;margin-left: 28%;" class="form-control"
+            placeholder="End Point" name="EndPoint" [(ngModel)]="createFlight.endPoint">
+    </div>
+</div><br>
+<div class="row">
+    <div class="col">
+        <label style="margin-left: 10%; font-size: 19px;">StartTime</label>
+        <input type="time" style="width: 50%;margin-top: -5%;margin-left: 40%;" class="form-control"
+            placeholder="Start Time" name="StartTime"  [(ngModel)]="createFlight.flightStartTime">
+    </div>
+    <div class="col">
+        <label style="margin-left: 7%; font-size: 19px;">
+            EndTime</label>
+        <input type="time" style="width: 50%;margin-top: -5%;margin-left: 28%;" class="form-control"
+            placeholder="End Time" name = "EndTime" [(ngModel)]="createFlight.flightEndTime">
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col">
+        <label style="margin-left: 10%; font-size: 19px;">TravelHours</label>
+        <input type="text" style="width: 50%;margin-top: -5%;margin-left: 40%;" class="form-control"
+            placeholder="Travel Hours" name="totalhours" [(ngModel)]="createFlight.travelHours">
+    </div>
+    <div class="col">
+
+
+
+
+        <label style="margin-left: 7%; font-size: 19px;">
+            MealType</label>
+        <select class="form-control" style="margin-left: 28%;width: 50%;margin-top: -30px;"
+            [(ngModel)]="createFlight.mealType" name="TravelDays">
+            <option>{{createFlight.mealType}}</option>
+
+            <option>Veg</option>
+            <option>Non-Veg</option>
+            <option>Both</option>
+        </select>
+
+
+
+        
+    </div>
+</div>
+
+<br>
+<div class="row">
+    <div class="col">
+        <label style="margin-left: 10%; font-size: 19px;">Total Bussiness Seats</label>
+        <input type="text" style="width: 50%;margin-top: -5%;margin-left: 40%;" class="form-control"
+            placeholder="Total Seats" name="totalseats" [(ngModel)]="createFlight.totalNumberOfSeats" required
+            #totalNumberOfSeats="ngModel"
+            [class.is-invalid]="totalNumberOfSeats.invalid && totalNumberOfSeats.touched">
+        <small class="text-danger" [class.d-none]="totalNumberOfSeats.valid || totalNumberOfSeats.untouched"
+            style="margin-left: 41%;">Total Bussiness Seats is required</small>
+    </div>
+    <div class="col">
+        <div>
+
+
+            <label style="margin-left: 7%; font-size: 19px;">
+                Bussiness Price</label>
+            <input type="text" style="width: 50%;margin-top: -5%;margin-left: 28%;" class="form-control"
+                placeholder="Price" name="price" [(ngModel)]="createFlight.priceDetails" required
+                #priceDetails="ngModel" [class.is-invalid]="priceDetails.invalid && priceDetails.touched">
+            <small class="text-danger" [class.d-none]="priceDetails.valid || priceDetails.untouched"
+                style="margin-left: 41%;">Bussiness Price is required</small>
+
+
+
+        </div>
+
+
+
+
+    </div>
+</div>
+<br>
+
+
+<div class="row">
+    <div class="col">
+        <label style="margin-left: 10%; font-size: 19px;">Total Economy Seats</label>
+        <input type="text" style="width: 50%;margin-top: -5%;margin-left: 40%;" class="form-control"
+            placeholder="Total Seats" name="totalseats" [(ngModel)]="createFlight.totalNumberOfEconamySeats" required
+            #totalNumberOfEconamySeats="ngModel"
+            [class.is-invalid]="totalNumberOfEconamySeats.invalid && totalNumberOfEconamySeats.touched">
+        <small class="text-danger" [class.d-none]="totalNumberOfEconamySeats.valid || totalNumberOfEconamySeats.untouched"
+            style="margin-left: 41%;">Total Econamy Seats is required</small>
+    </div>
+    <div class="col">
+        <label style="margin-left: 7%; font-size: 19px;">
+            Economy Price</label>
+        <input type="text" style="width: 50%;margin-top: -5%;margin-left: 28%;" class="form-control"
+            placeholder="Price" name="price" [(ngModel)]="createFlight.priceEconamySeats" required
+            #priceEconamySeats="ngModel" [class.is-invalid]="priceEconamySeats.invalid && priceEconamySeats.touched">
+        <small class="text-danger" [class.d-none]="priceEconamySeats.valid || priceEconamySeats.untouched"
+            style="margin-left: 41%;">Economy Price is required</small>
+    </div>
+</div>
+
+<br>
+
+
+<div class="col">
+    <div>
+        <button class="btn btn-primary" type="submit"
+        style="margin-left: 36%;width: 11%;margin-top: 0px;" (click)="updateFlight()" >Update</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div><div>   <button class="btn btn-primary" type="submit" (click)="cancelsave()"
+            style="margin-top: -66px;background-color: red;width: 11%;margin-left: 50%;">Cancel
+        </button></div>
+</div>
+

@@ -1,0 +1,42 @@
+<div class="col">
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm" style="
+    margin-left: 27%;
+    font-size: 23px;">AirLine Name</label>
+
+    <input type="text" name="airlineName" [(ngModel)]="airLine.airlineName" class="form-control"
+        placeholder="AirLine Name" style="
+        margin-top: -42px;
+        width: 28%;
+        margin-left: 42%;">
+</div><br />
+<div class=" col">
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm" style="
+        margin-left: 27%;
+        font-size: 23px;">AirLine Code</label>
+    <input type="text" name="airlineCode" [(ngModel)]="airLine.airlineCode" class="form-control"
+        placeholder="AirLine Code" style="
+    margin-top: -39px;
+    width: 28%;
+    margin-left: 42%;">
+</div> <br />
+
+
+<div class=" col">
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm" style="
+    margin-left: 27%;
+    font-size: 23px;">Contact Number</label>
+    <input type="text" name="airlineContactNumber" [(ngModel)]="airLine.airlineContactNumber" class="form-control"
+        placeholder="Contact Number" style="
+margin-top: -39px;
+width: 28%;
+margin-left: 42%;">
+</div> <br />
+
+
+
+
+
+<button class="btn btn-primary" type="submit" style="margin-left: 45%;margin-top: 23px;"
+    (click)="updateairline()">Update</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<button class="btn btn-primary" type="submit" (click)="cancel()" style="margin-top: 22px;background-color: red;">Cancel
+</button>

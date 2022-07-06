@@ -1,0 +1,148 @@
+<div class="container" *ngIf="booktickWind">
+
+    
+
+    <form [formGroup]="productForm">
+
+
+        <div class="row">
+            <div class="col">
+                <label style="margin-left: 10%; font-size: 19px;">FlightName</label>
+                <input type="text" style="width: 50%;margin-top: -5%;margin-left: 40%;" class="form-control"
+                    placeholder="Flight Name" name="FlightName" [readonly]="true" formControlName="flightName">
+            </div>
+            <div class="col">
+                <label style="margin-left: 7%; font-size: 19px;">
+                    FlightCode</label>
+                <input type="text" style="width: 50%;margin-top: -5%;margin-left: 28%;" class="form-control"
+                    placeholder="Flight Code" formControlName="flightCode" [readonly]="true" name="FlightCode">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col">
+                <label style="margin-left: 10%; font-size: 19px;">AirLineName</label>
+                <input type="text" style="width: 50%;margin-top: -5%;margin-left: 40%;" class="form-control"
+                    placeholder="AirLineName" formControlName="airlineName" [readonly]="true" name="airlinename">
+            </div>
+            <div class="col">
+                <label style="margin-left: 7%; font-size: 19px;">
+                    TravelDate</label>
+                <input type="text" style="width: 50%;margin-top: -5%;margin-left: 28%;" class="form-control"
+                    placeholder="TravelDate" name="traveldate"  [readonly]="true" formControlName="searchDate">
+            </div>
+        </div><br>
+
+        <div class="row">
+            <div class="col">
+                <label style="margin-left: 10%; font-size: 19px;">Source</label>
+                <input type="text" style="width: 50%;margin-top: -5%;margin-left: 40%;" class="form-control"
+                    placeholder="Start Time" name="startPoint" [readonly]="true" formControlName="startPoint">
+            </div>
+            <div class="col">
+                <label style="margin-left: 7%; font-size: 19px;">
+                    Destination</label>
+                <input type="text" style="width: 50%;margin-top: -5%;margin-left: 28%;" class="form-control"
+                    placeholder="End Time" name="endPoint" [readonly]="true" formControlName="endPoint">
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <label style="margin-left: 10%; font-size: 19px;">StartTime</label>
+                <input type="text" style="width: 50%;margin-top: -5%;margin-left: 40%;" class="form-control"
+                    placeholder="Travel Hours" name="startTime" [readonly]="true" formControlName="startTime">
+            </div>
+            <div class="col">
+                <label style="margin-left: 7%; font-size: 19px;">
+                    EndTime</label>
+                <input type="text" style="width: 50%;margin-top: -5%;margin-left: 28%;" class="form-control"
+                    placeholder="EndTime" name="endTime"  [readonly]="true" formControlName="endTime">
+            </div>
+        </div>
+<br>
+        <div class="row">
+            <div class="col">
+                <label style="margin-left: 10%; font-size: 19px;">Email</label>
+                <input type="text" style="width: 51%;margin-top: -5%;margin-left: 39.5%;"
+                class="form-control"
+                    placeholder="UserEmail" name="useremail" formControlName="userEmail">
+            </div>
+
+            <div class="col">
+                <label style="margin-left: 7%; font-size: 19px;">
+                    TicketType</label>
+                <!-- <input type="text" style="width: 50%;margin-top: -5%;margin-left: 28%;" 
+                    class="form-control"
+                    placeholder="EndTime" name="endTime"   formControlName="endTime"> -->
+
+                   <select class="form-control" formControlName="tickeyType"
+                    style="width: 50%;margin-top: -5%;margin-left: 28%;" >
+                        <option>Business</option>
+                        <option>Economy</option>
+                    </select>
+            </div>
+           
+        </div>
+
+        <br><br><br>
+
+        <table class="table table-bordered" formArrayName="passangerList" style="color: black;">
+            <tr>
+                <th colspan="2">Add PassangerDetails</th>
+             
+            <tr *ngFor="let quantity of passangerDetails().controls; let i=index" [formGroupName]="i">
+                <td>
+                    PassangerName :
+                    <input type="text" formControlName="passangerName" class="form-control">
+                </td>
+                <td>
+                    Gender:
+                    <!-- <input type="text" formControlName="gender" class="form-control"> -->
+
+
+                    <select class="form-control" formControlName="gender">
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Other</option>
+                    </select>
+
+                </td>
+                <td>
+                    Age:
+                    <input type="text" formControlName="age" class="form-control">
+                </td>
+                <td>
+                    MealType:
+
+                    <select class="form-control" formControlName="mealType">
+                        <option *ngFor="let air of mealtypearray;">{{air.mealtype}}</option>
+                    </select>
+                </td>
+
+                <td>
+                    <button type="button"  class="btn btn-outline-success" (click)="addPassanger()">+</button>
+
+                </td>
+                <td>
+                    <button (click)="removePassanger(i)" class="btn btn-outline-danger">X</button>
+                </td>
+
+
+            </tr>
+        </table>
+
+        <button type="button" class="btn btn-primary" (click)="reviewTicket()" style="margin-left: 35%;">Review Details</button>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-danger" (click)="backtohome">Back to SearchFlight</button>
+        
+    </form>
+
+    <br />
+   
+</div>
+
+
+<div *ngIf="reviewticket">
+    <app-reviewticket [model]="productForm.value"></app-reviewticket>
+</div>

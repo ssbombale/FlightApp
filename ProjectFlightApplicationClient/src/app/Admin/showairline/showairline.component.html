@@ -1,0 +1,59 @@
+<div>
+
+    <!-- <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" [(ngModel)]="airlinesearch" name="search"
+            aria-label="Search" style="
+        width: 31%;
+        margin-left: 40%;">
+        <button class="btn btn-outline-success" (click)="searchByAirlineName()" type="submit">Search</button>
+    </form> -->
+    <button type="button" style="
+        margin-top: -68px;
+        margin-left: 79%; " routerLink="/createairline" class="btn btn-primary" data-toggle="button"
+        aria-pressed="false" autocomplete="off">
+        Create AirLine
+    </button>
+    <br /><br />
+    <table class="table table-bordered" style="width: 81%;margin-left: 9%;border: black;">
+        <thead>
+            <tr>
+                <th scope="col">SNo</th>
+                <th scope="col">AirlineName</th>
+                <th scope="col">AirlineCode</th>
+                <th scope="col">AirlineContact</th>
+                <th scope="col">Airline Status</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+
+
+        <tbody *ngIf="airline.length>0">
+            <tr *ngFor="let item of airline; index as i">
+                <th scope="row">{{i+1}}</th>
+                <td>{{item.airlineName}}</td>
+                <td>{{item.airlineCode}}</td>
+                <td>{{item.airlineContactNumber}}</td>
+
+                <td *ngIf="item.airlineActiveStatus">Airline Activate</td>
+               
+
+                <td style="text-align: center;">
+
+                 
+                    <button *ngIf="!item.airlineActiveStatus" type="button" class="btn btn-primary"
+                        (click)="acitve(item.airlineId)">Active</button>&nbsp;&nbsp;&nbsp;
+
+                    <button type="button" class="btn btn-primary" (click)="updateAirline(item.airlineId)">Edit</button>
+
+                </td>
+            </tr>
+        </tbody>
+        <!-- <tbody *ngIf="airline.length == 0">
+            <tr>
+                <td colspan="5">No Record Found</td>
+    
+            </tr>
+        </tbody> -->
+
+    </table>
+</div>

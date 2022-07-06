@@ -1,0 +1,179 @@
+<form *ngIf="searchWind">
+    <div class="card" style="width: 97%;margin-left: 1%;">
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <label style="margin-left: 38%;font-size: 16px;">Trip Type</label>
+                    <input type="radio" style="margin-left: 171px;margin-top: 13px;" value="oneway"
+                        [(ngModel)]="searchFlightModel.searchType" name="trip">
+                    <label style="margin-left: 2%; font-size: 16px;">OneWay Trip</label>
+
+                    <input type="radio" style="margin-left: -21%;margin-top: 2%;" value="roundtrip"
+                        [(ngModel)]="searchFlightModel.searchType" name="trip">
+                    <label style="margin-left: 1%;font-size: 16px;">Round Trip</label>
+
+                </div>
+            </div><br>
+
+            <div class="row">
+                <div class="col">
+                    <label>From</label>
+                    <input type="text" style="width: 70%;margin-top: -12%;margin-left: 25%;" class="form-control"
+                        placeholder="From" name="from" [(ngModel)]="searchFlightModel.startPoint" required
+                        #startPoint="ngModel" [class.is-invalid]="startPoint.invalid && startPoint.touched">
+                    <small class="text-danger" [class.d-none]="startPoint.valid || startPoint.untouched"
+                        style="margin-left: 36%;">Source is required</small>
+                </div>
+                <div class="col">
+                    <label>To</label>
+                    <input type="text" style="width: 70%;margin-top: -12%;margin-left: 14%;" class="form-control"
+                        placeholder="To" name="to" [(ngModel)]="searchFlightModel.endPoint" required #endPoint="ngModel"
+                        [class.is-invalid]="endPoint.invalid && endPoint.touched">
+                    <small class="text-danger" [class.d-none]="endPoint.valid || endPoint.untouched"
+                        style="margin-left: 22%;">Source is required</small>
+                </div>
+                <div class="col">
+                    <label style="margin-left: -27px;">Journey Date</label>
+                    <input type="date" style="width: 70%;margin-top: -12%;margin-left: 32%;" class="form-control"
+                        placeholder="Journey Date" [(ngModel)]="searchFlightModel.searchDate" name="searchdate" required
+                        #searchDate="ngModel" [class.is-invalid]="searchDate.invalid && searchDate.touched">
+                    <small class="text-danger" [class.d-none]="searchDate.valid || searchDate.untouched"
+                        style="margin-left: 38%;">Search Date is required</small>
+                </div>
+
+                <div class="col"> 
+                    <label style="margin-left: 4%;">Return Date</label>
+
+                    <input type="date" style="width: 70%;margin-top: -12%;margin-left: 44%;" class="form-control"
+                        placeholder="Return Date" *ngIf="searchFlightModel.searchType ==='roundtrip'"
+                        [(ngModel)]="searchFlightModel.returnDate" name="returnDate" [disabled]="false" >
+
+
+                    <input type="date" style="width: 70%;margin-top: -12%;margin-left: 44%;" class="form-control"
+                        placeholder="Return Date" *ngIf="searchFlightModel.searchType ==='oneway'"
+                        [(ngModel)]="searchFlightModel.returnDate" name="returnDate" [disabled]="true">
+
+                </div>
+
+                <div class="col">
+
+                    <button type="button" class="btn btn-outline-secondary"
+                        style="margin-top: -6px;margin-left: 38%;width: 59%;" (click)="getSearchFlight()">
+                        Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card" style="width: 97%;margin-left: 1%;margin-top: 1%;" *ngIf="showDetails">
+
+        <table class="table table-bordered" style="width: 81%;margin-left: 6%;border: black;margin-top: 10px;">
+            <thead>
+                <tr>
+                    <th scope="col">SNo</th>
+                    <th scope="col">AirLineName</th>
+                    <th scope="col">FlightCode</th>
+                    <th scope="col">FlightName</th>
+                    <th scope="col">Source</th>
+                    <th scope="col">Destination</th>
+                    <th scope="col">FlightStartTime</th>
+                    <th scope="col">FlightEndTime</th>
+                    <th scope="col">TravelHours</th>
+                    <th scope="col">Bussiness fare</th>
+                    <th scope="col">Economy fare</th>
+                    <th scope="col">Book Ticket</th>
+                </tr>
+            </thead>
+
+            <tbody *ngIf="showFlight.length>0">
+                <tr *ngFor="let item of showFlight; index as i">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{item.airlineName}}</td>
+                    <td>{{item.flightCode}}</td>
+                    <td>{{item.flightName}}</td>
+                    <td>{{item.startPoint}}</td>
+                    <td>{{item.endPoint}}</td>
+                    <td>{{item.startTime}}</td>
+                    <td>{{item.endTime}}</td>
+                    <td>{{item.travelHours}}</td>
+                    <td>{{item.economyFare | currency:"INR"}}</td>
+                    <td>{{item.ticketFare | currency:"INR"}}</td>
+         
+                    <td style="text-align: center;">
+                        <button type="button" class="btn btn-primary" (click)="editClick(item)">Book
+                        </button>
+                    </td>
+
+                </tr>
+            </tbody>
+
+            <tbody *ngIf="showFlight.length == 0">
+                <tr>
+                    <td colspan="14">Flight Not Found</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+
+
+
+        <table *ngIf="type==='roundtrip'" class="table table-bordered"
+            style="width: 81%;margin-left: 6%;border: black;margin-top: 10px;">
+            <thead>
+                <tr>
+                    <th scope="col">SNo</th>
+                    <th scope="col">AirLineName</th>
+                    <th scope="col">FlightCode</th>
+                    <th scope="col">FlightName</th>
+                    <th scope="col">Source</th>
+                    <th scope="col">Destination</th>
+                    <th scope="col">FlightStartTime</th>
+                    <th scope="col">FlightEndTime</th>
+                    <th scope="col">TravelHours</th>
+                    <th scope="col">Bussiness fare</th>
+                    <th scope="col">Economy fare</th>
+                    <th scope="col">Book Ticket</th>
+                </tr>
+            </thead>
+
+            <tbody *ngIf="returnFlight.length>0">
+                <tr *ngFor="let item of returnFlight; index as i">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{item.airlineName}}</td>
+                    <td>{{item.flightCode}}</td>
+                    <td>{{item.flightName}}</td>
+                    <td>{{item.startPoint}}</td>
+                    <td>{{item.endPoint}}</td>
+                    <td>{{item.startTime}}</td>
+                    <td>{{item.endTime}}</td>
+                    <td>{{item.travelHours}}</td>
+                    <td>{{item.ticketFare | currency:"INR"}}</td>
+                    <td>{{item.economyFare | currency:"INR"}}</td>
+                    <td style="text-align: center;">
+                        <button type="button" class="btn btn-primary" (click)="editClick(item)">Book
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+
+            <tbody *ngIf="returnFlight.length == 0">
+                <tr>
+                    <td colspan="12">Return Flight Not Found</td>
+
+                </tr>
+            </tbody>
+
+        </table>
+
+
+    </div>
+
+
+</form>
+
+
+
+<div *ngIf="activateedit">
+    <app-ticketbook [emp]="emp"></app-ticketbook>
+</div>

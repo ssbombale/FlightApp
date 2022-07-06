@@ -1,0 +1,176 @@
+<div class="card" style="width: 97%;margin-left: 1%;">
+    <div class="card-body">
+
+
+        <div class="row">
+            <div class="col">
+
+                <input type="text" style="width: 70%;margin-top: -1%;margin-left: 25%;" class="form-control"
+                    placeholder="Search Here" [(ngModel)]="userEmail" name="from">
+            </div>
+            <div class="col">
+                <label>Mode</label>
+
+                <select class="form-control"  [(ngModel)]="searchMode" style="width: 70%;margin-top: -7%;margin-left: 14%;" name="TravelDays">
+                    <option>ByEmail</option>
+                    <option>ByPnrNumber</option>
+                </select>
+
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-primary" (click)="ticketSearch()" style="width: 39%;margin-top: -1%;margin-left: 3%;">Search
+                    Ticket</button>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div *ngIf="errorWindow" >
+    <h1 style="text-align: center;">Ticket Not Found!!!!!!</h1>
+</div>
+
+
+<div *ngIf="userEmailDetails">
+    <table class="table table-bordered" style="width: 81%;margin-left: 9%;border: black;margin-top: 3%;" *ngIf="ticketDetailsList.length>0">
+        <thead>
+            <tr>
+                <th scope="col">SNo</th>
+                <th scope="col">UserEmail</th>
+                <th scope="col">PNRNumber</th>
+                <th scope="col">FlightName</th>
+                <th scope="col">Source</th>
+                <th scope="col">Destination</th>
+                <th scope="col">TicketFare</th>
+                <th scope="col">TravelDate</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of ticketDetailsList; index as i">
+                <th scope="row">{{i+1}}</th>
+                <td>{{item.userName}}</td>
+                <td>{{item.pnrNumber}}</td>
+                <td>{{item.flightName}}</td>
+                <td>{{item.fromCity}}</td>
+                <td>{{item.endCity}}</td>
+                <td>{{item.totalPriceAmount  | currency:"INR"}}</td>
+                <td>{{item.travelDate}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary" (click)="viewTicket(item.pnrNumber)">View</button>
+                </td>
+                
+
+            </tr>
+        </tbody>
+    
+    </table>
+
+
+    <div  *ngIf="ticketDetailsList.length==0">
+        <h1 style="text-align: center;">Ticket Not Found!!!!!!</h1>
+    </div>
+    
+</div>
+
+
+
+
+<div *ngIf="showticketWindow" >
+    <div class="row">
+        <div class="col">
+            <label style="margin-left: 29%; font-size: 19px;">FlightName</label>
+           <label style="margin-left: 6%;">{{ticketDetails.flightName}}</label>
+        </div>
+        <div class="col">
+            <label style="margin-left: 7%; font-size: 19px;">
+                FlightCode</label>
+                <label style="margin-left: 6%;">{{ticketDetails.flightCode}}</label>
+        </div>
+        <div class="col">
+            <label style="margin-left: 7%; font-size: 19px;">
+                AirlineName</label>
+                <label style="margin-left: 6%;">{{ticketDetails.airlineName}}</label>
+        </div>
+    </div>
+    <br>
+    
+    <div class="row">
+        <div class="col">
+            <label style="margin-left: 29%; font-size: 19px;">TravelDate</label>
+           <label style="margin-left: 8%;">{{ticketDetails.travelDate}}</label>
+        </div>
+        <div class="col">
+            <label style="margin-left: 7%; font-size: 19px;">
+                Source</label>
+                <label style="margin-left: 14%;">{{ticketDetails.fromCity}}</label>
+        </div>
+        <div class="col">
+            <label style="margin-left: 7%; font-size: 19px;">
+                Destination</label>
+                <label style="margin-left: 8%;">{{ticketDetails.endCity}}</label>
+        </div>
+    <br>
+    
+        <div class="row" style="margin-top: 2%;">
+            <div class="col">
+                <label style="margin-left: 29%; font-size: 19px;">StartTime</label>
+               <label style="margin-left: 11%;">{{ticketDetails.startTime}}</label>
+            </div>
+            <div class="col">
+                <label style="margin-left: 9%; font-size: 19px;">
+                    EndTime  </label>
+                    <label style="margin-left: 11%;">{{ticketDetails.endTime}}</label>
+            </div>
+            <div class="col">
+                <label style="margin-left: 11%; font-size: 19px;">
+                    TotalFare</label>
+                    <label style="margin-left: 12%;">{{ticketDetails.totalPriceAmount}}</label>
+            </div>
+         
+    </div>
+    <br>
+
+    <div class="row" style="margin-top: 2%;">
+        <div class="col">
+            <label style="margin-left: 19%; font-size: 19px;">
+                PNR Number</label>
+                <label style="margin-left: 3%;">{{ticketDetails.pnrNumber}}</label>
+        </div>
+
+        <div class="col">
+            <label style="margin-left: -29%; font-size: 19px;">
+                UserEmail</label>
+                <label style="margin-left: 6%;">{{ticketDetails.userName}}</label>
+        </div>
+        </div> <br> <br>
+    
+    <table class="table table-bordered" style="width: 81%;margin-left: 9%;border: black;">
+        <thead>
+            <tr>
+                <th scope="col">SNo</th>
+                <th scope="col">PassangerName</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Age</th>
+                <th scope="col">MealType</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of passangerList; index as i">
+                <th scope="row">{{i+1}}</th>
+                <td>{{item.passangerName}}</td>
+                <td>{{item.gender}}</td>
+                <td>{{item.age}}</td>
+                <td>{{item.mealType}}</td>
+            </tr>
+        </tbody>
+    
+    </table>
+    
+
+
+</div>

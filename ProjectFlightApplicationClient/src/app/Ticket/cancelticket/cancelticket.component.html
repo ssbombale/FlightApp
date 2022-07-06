@@ -1,0 +1,89 @@
+<div class="card" style="width: 97%;margin-left: 1%;">
+    <div class="card-body">
+
+
+        <div class="row">
+            <div class="col">
+
+                <input type="text" style="width: 70%;margin-top: -1%;margin-left: 25%;" class="form-control"
+                    placeholder="Search Here" [(ngModel)]="userEmail" name="from">
+            </div>
+            <div class="col">
+                <label>Mode</label>
+
+                <select class="form-control" [(ngModel)]="searchMode"
+                    style="width: 70%;margin-top: -7%;margin-left: 14%;" name="TravelDays">
+                    <option>ByEmail</option>
+                    <option>ByPnrNumber</option>
+                </select>
+
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-primary" (click)="cancelTicket()"
+                style="width: 39%;margin-top: -1%;margin-left: 3%;">Cancel Ticket</button>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div *ngIf="errorWindow" >
+    <h1 style="text-align: center;">Ticket Not Found!!!!!!</h1>
+</div>
+
+<div *ngIf="showticketWindow" >
+    <h1 style="text-align: center;">Your Ticket Has Been Canceled!!!!!!</h1>
+</div>
+
+
+
+<div *ngIf="userEmailDetails">
+    <table class="table table-bordered" style="width: 81%;margin-left: 9%;border: black;margin-top: 3%;" *ngIf="ticketDetailsList.length>0">
+        <thead>
+            <tr>
+                <th scope="col">SNo</th>
+                <th scope="col">UserEmail</th>
+                <th scope="col">PNRNumber</th>
+                <th scope="col">FlightName</th>
+                <th scope="col">Source</th>
+                <th scope="col">Destination</th>
+                <th scope="col">TicketFare</th>
+                <th scope="col">TravelDate</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of ticketDetailsList; index as i">
+                <th scope="row">{{i+1}}</th>
+                <td>{{item.userName}}</td>
+                <td>{{item.pnrNumber}}</td>
+                <td>{{item.flightName}}</td>
+                <td>{{item.fromCity}}</td>
+                <td>{{item.endCity}}</td>
+                <td>{{item.totalPriceAmount  | currency:"INR"}}</td>
+                <td>{{item.travelDate}}</td>
+                <td>
+                    <button type="button" class="btn btn-danger" (click)="cancelTicektByPnr(item.pnrNumber)">Delete</button>
+                </td>
+                
+
+            </tr>
+        </tbody>
+    
+    </table>
+
+
+    <div  *ngIf="ticketDetailsList.length==0">
+        <h1 style="text-align: center;">Ticket Not Found!!!!!!</h1>
+    </div>
+    
+</div>
+
+
+
+

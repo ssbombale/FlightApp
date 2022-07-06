@@ -1,0 +1,66 @@
+<!-- <form class="d-flex" role="search">
+    <input class="form-control me-2" type="search" [(ngModel)]="flightSerach" placeholder="Search" name="search"
+        aria-label="Search" style="
+    width: 31%;
+    margin-left: 40%;">
+    <button class="btn btn-outline-success" (click)="searchByFlightName()" type="submit">Search</button>
+</form> -->
+
+<button type="button" style="
+    margin-top: -68px;
+    margin-left: 79%; " routerLink="/createflight" class="btn btn-primary" data-toggle="button" aria-pressed="false"
+    autocomplete="off">
+    Create Flight
+</button>
+<br /><br />
+<table class="table table-bordered" style="width: 81%;margin-left: 9%;border: black;">
+    <thead>
+        <tr>
+            <th scope="col">SNo</th>
+            <th scope="col">FlightCode</th>
+            <th scope="col">FlightName</th>
+            <th scope="col">AirLineName</th>
+            <th scope="col">Source</th>
+            <th scope="col">Destination</th>
+            <th scope="col">Flight Running Days</th>
+
+            <th scope="col">Status</th>
+
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody *ngIf="showFlight.length>0">
+        <tr *ngFor="let item of showFlight; index as i">
+            <th scope="row">{{i+1}}</th>
+            <td>{{item.flightCode}}</td>
+            <td>{{item.flightName}}</td>
+            <td>{{item.airlineName}}</td>
+            <td>{{item.startPoint}}</td>
+            <td>{{item.endPoint}}</td>
+            <td>{{item.flighttravelDays}}</td>
+
+
+            <td *ngIf="item.flightActiveStatus">Flight Activate</td>
+            <td *ngIf="!item.flightActiveStatus">Flight Canceled</td>
+            <td style="text-align: center;">
+
+
+
+                <button *ngIf="item.flightActiveStatus" type="button" class="btn btn-danger"
+                (click)="cancelFlight(item.flightId)">Cancel</button> &nbsp;&nbsp;&nbsp;
+            <button *ngIf="!item.flightActiveStatus" type="button" class="btn btn-primary"
+                (click)="activateFlight(item.flightId)">Active</button>&nbsp;&nbsp;&nbsp;
+                
+                <button type="button" class="btn btn-primary" (click) = "updateFlights(item.flightId)" >Edit</button>
+
+            </td>
+        </tr>
+    </tbody>
+    <tbody *ngIf="showFlight.length == 0">
+        <tr>
+            <td colspan="9">No Record Found</td>
+
+        </tr>
+    </tbody>
+
+</table>

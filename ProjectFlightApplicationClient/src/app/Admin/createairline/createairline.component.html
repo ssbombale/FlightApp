@@ -1,0 +1,76 @@
+<form>
+
+  <div class="col">
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm" style="
+      margin-left: 27%;
+      font-size: 23px;">AirLine Name</label>
+
+    <input type="text" name="airlineName" [(ngModel)]="airLine.airlineName" class="form-control"
+      placeholder="AirLine Name" style="
+          margin-top: -42px;
+          width: 28%;
+          margin-left: 42%;" required #airlineName="ngModel"
+      [class.is-invalid]="airlineName.invalid && airlineName.touched">
+
+    <small class="text-danger" [class.d-none]="airlineName.valid || airlineName.untouched"
+      style="margin-left: 41%;">AirlineName is required</small>
+
+  </div><br />
+  <div class=" col">
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm" style="
+          margin-left: 27%;
+          font-size: 23px;">AirLine Code</label>
+    <input type="text" name="airlineCode" [(ngModel)]="airLine.airlineCode" class="form-control"
+      placeholder="AirLine Code" style="
+      margin-top: -39px;
+      width: 28%;
+      margin-left: 42%;" required #airlineCode="ngModel"
+      [class.is-invalid]="airlineCode.invalid && airlineCode.touched">
+
+    <small class="text-danger" [class.d-none]="airlineCode.valid || airlineCode.untouched"
+      style="margin-left: 41%;">AirLine Code is required</small>
+  </div> <br />
+
+
+  <div class=" col">
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm" style="
+      margin-left: 27%;
+      font-size: 23px;">Contact Number</label>
+    <input type="text" name="airlineContactNumber" [(ngModel)]="airLine.airlineContactNumber" class="form-control"
+      placeholder="Contact Number" style="
+  margin-top: -39px;
+  width: 28%;
+  margin-left: 42%;" required #airlineContactNumber="ngModel"
+      [class.is-invalid]="airlineContactNumber.invalid && airlineContactNumber.touched">
+
+    <small class="text-danger" [class.d-none]="airlineContactNumber.valid || airlineContactNumber.untouched"
+      style="margin-left: 41%;">Contact Number is required</small>
+  </div> <br />
+
+
+  <!-- <div class=" col">
+      <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm" style="
+    margin-left: 27%;
+    font-size: 23px;">Active Status</label>
+      <input class="form-check-input" type="radio" name="true" [(ngModel)]="airLine.airlineActiveStatus" value="true"
+        name="flexRadioDefault" id="flexRadioDefault1" style="  margin-top: 18px;">&nbsp;&nbsp;Active
+      <input class="form-check-input" type="radio" name="false" [(ngModel)]="airLine.airlineActiveStatus" value="false"
+        name="flexRadioDefault" id="flexRadioDefault1" style="  margin-top: 18px;margin-left: 42px;">&nbsp;&nbsp;In-Active
+  
+    </div> -->
+  <button class="btn btn-primary" type="submit" style="margin-left: 45%;margin-top: 23px;"
+    (click)="airlineSave()">Save</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <button class="btn btn-primary" type="submit" (click)="cancel()"
+    style="margin-top: 22px;background-color: red;">Cancel
+  </button>
+
+
+  <div class="alert alert-primary" role="alert" *ngIf="this.outputModel.status && this.outputModel.message!=''">
+    This is a primary alert—check it out!
+  </div>
+
+  <div class="alert alert-primary" role="alert" *ngIf="!this.outputModel.status && this.outputModel.message!=''">
+    This is a invalid!
+  </div>
+
+</form>

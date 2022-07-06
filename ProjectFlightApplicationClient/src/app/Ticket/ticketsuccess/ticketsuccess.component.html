@@ -1,0 +1,100 @@
+<div class="card-body" style="text-align: center;" *ngIf="successMsg">
+    <h3 class="card-title">Ticket Book SuccessFully</h3>
+    <p class="card-text">Your Ticket Has been SuccessFully Booked. Button to Click View Ticket</p>
+    <a (click)="viewTicket()" class="btn btn-primary">View Ticket</a>
+
+</div>
+
+<div *ngIf="viewtickettmsg">
+    <div class="row">
+        <div class="col">
+            <label style="margin-left: 29%; font-size: 19px;">FlightName</label>
+            <label style="margin-left: 6%;">{{ticketDetails.flightName}}</label>
+        </div>
+        <div class="col">
+            <label style="margin-left: 7%; font-size: 19px;">
+                FlightCode</label>
+            <label style="margin-left: 6%;">{{ticketDetails.flightCode}}</label>
+        </div>
+        <div class="col">
+            <label style="margin-left: 7%; font-size: 19px;">
+                AirlineName</label>
+            <label style="margin-left: 6%;">{{ticketDetails.airlineName}}</label>
+        </div>
+    </div>
+    <br>
+
+    <div class="row">
+        <div class="col">
+            <label style="margin-left: 29%; font-size: 19px;">TravelDate</label>
+            <label style="margin-left: 8%;">{{ticketDetails.travelDate}}</label>
+        </div>
+        <div class="col">
+            <label style="margin-left: 7%; font-size: 19px;">
+                Source</label>
+            <label style="margin-left: 14%;">{{ticketDetails.fromCity}}</label>
+        </div>
+        <div class="col">
+            <label style="margin-left: 7%; font-size: 19px;">
+                Destination</label>
+            <label style="margin-left: 8%;">{{ticketDetails.endCity}}</label>
+        </div>
+        <br>
+
+        <div class="row" style="margin-top: 2%;">
+            <div class="col">
+                <label style="margin-left: 29%; font-size: 19px;">StartTime</label>
+                <label style="margin-left: 10%;">{{ticketDetails.startTime}}</label>
+            </div>
+            <div class="col">
+                <label style="margin-left: 9%; font-size: 19px;">
+                    EndTime - </label>
+                <label style="margin-left: 8%;">{{ticketDetails.endTime}}</label>
+            </div>
+            <div class="col">
+                <label style="margin-left: 11%; font-size: 19px;">
+                    TotalFare</label>
+                <label style="margin-left: 8%;">{{ticketDetails.totalPriceAmount}}</label>
+            </div>
+
+        </div>
+        <br>
+
+        <div class="row" style="margin-top: 2%;">
+            <div class="col">
+                <label style="margin-left: 19%; font-size: 19px;">
+                    PNR Number</label>
+                <label style="margin-left: 6%;">{{ticketDetails.pnrNumber}}</label>
+            </div>
+
+            <div class="col">
+                <label style="margin-left: -29%; font-size: 19px;">
+                    UserEmail</label>
+                <label style="margin-left: 6%;">{{ticketDetails.userName}}</label>
+            </div>
+        </div> <br> <br>
+
+        <table class="table table-bordered" style="width: 81%;margin-left: 9%;border: black;">
+            <thead>
+                <tr>
+                    <th scope="col">SNo</th>
+                    <th scope="col">PassangerName</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">MealType</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of passangerList; index as i">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{item.passangerName}}</td>
+                    <td>{{item.gender}}</td>
+                    <td>{{item.age}}</td>
+                    <td>{{item.mealType}}</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+</div>

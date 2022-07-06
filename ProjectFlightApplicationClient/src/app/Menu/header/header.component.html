@@ -1,0 +1,24 @@
+<div class="container">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+            <svg class="bi me-2" width="40" height="32">
+                <use xlink:href="#bootstrap" />
+            </svg>
+            <span class="fs-4"><h1>FLIGHT APP</h1></span>
+        </a>
+
+        <ul class="nav nav-pills">
+            <!-- <li class="nav-item"><a href="#" class="nav-link active" >Home</a></li> -->
+            <!-- <li class="nav-item"><a routerLink="/showairline" class="nav-link">AirLine</a> </li>
+            <li class="nav-item"><a routerLink="showflights" class="nav-link">Flights</a></li>
+            <li class="nav-item"><a routerLink="/showflight" class="nav-link">Admin</a></li>
+            <li class="nav-item"><a routerLink="/searchflight" class="nav-link">Flight Search</a></li>
+            <li class="nav-item"><a routerLink="#" class="nav-link">My Profile</a></li> -->
+            <li class="nav-item" *ngIf="isUserLoggedIn"><a routerLink="/showairline" class="nav-link">AIRLINE NAME</a> </li>
+            <li class="nav-item" *ngIf="isUserLoggedIn"><a routerLink="/showflight" class="nav-link">FLIGHT NAME</a></li>
+            <li class="nav-item"><a routerLink="/searchflight" class="nav-link">SEARCH FOR A FLIGHT</a></li>
+            <li class="nav-item"><a routerLink="/viewTicket" class="nav-link">VIEW TICKETS</a></li>
+            <li class="nav-item"><a routerLink="/cancelTicket" class="nav-link">CANCEL RICKETS</a></li>
+            <li class="nav-item" *ngIf="!isUserLoggedIn"><a routerLink="/login" class="nav-link">LOGIN</a></li>
+            <li class="nav-item"  *ngIf="isUserLoggedIn"><a href="/logout" (click)="logout()" class="nav-link">LOGOUT</a></li>
+        </ul>
